@@ -1,0 +1,9 @@
+{
+  "name": "tokenatxor",
+  "version": "1.0.0",
+  "description": "BREED LIFE to TOKENS",
+  "main": "index.ts",
+  "repository": "https://github.com/zen2see/TOKENATXOR.git",
+  "author": "zen zen2see@gmail.com",
+  "license": "MIT"
+}
