@@ -253,13 +253,13 @@ contract TokenatxorFacet {
 
      ///@notice Return the universal name of the NFT
     function name() external view returns (string memory) {
-        // return "Aavegotchi";
+        // return "Tokenatxori";
         return s.name;
     }
 
     /// @notice An abbreviated name for NFTs in this contract
     function symbol() external view returns (string memory) {
-        //return "GOTCHI";
+        //return "TOKENTXR";
         return s.symbol;
     }
 
