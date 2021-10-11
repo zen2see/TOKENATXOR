@@ -207,8 +207,8 @@ contract TokenatxorFacet {
         address _to,
         uint256 _tokenId
     ) internal {
-        require(_to != address(0), "AavegotchiFacet: Can't transfer to 0 address");
-        require(_from != address(0), "AavegotchiFacet: _from can't be 0 address");
+        require(_to != address(0), "TokenatxorFacet: Can't transfer to 0 address");
+        require(_from != address(0), "TokenatxorFacet: _from can't be 0 address");
         require(_from == s.tokenatxors[_tokenId].owner, "TokenatxorFacet: _from is not owner, transfer failed");
         require(
             _sender == _from || s.operators[_from][_sender] || _sender == s.approved[_tokenId],
