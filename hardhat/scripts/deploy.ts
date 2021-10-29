@@ -94,8 +94,8 @@ async function main (scriptName?: string) {
     //tktrStakingDiamond = '0xA4fF399Aa1BB21aBdd3FC689f46CCE0729d58DEd'  
     dao = account // 'todo' // await accounts[1].getAddress()
     daoTreasury = account
-    rarityFarming = account // 'todo' // await accounts[2].getAddress()
-    artists = account // 'todo' // await accounts[3].getAddress()
+    //rarityFarming = account // 'todo' // await accounts[2].getAddress()
+    //artists = account // 'todo' // await accounts[3].getAddress()
     itemManagers = [account] // 'todo'
   }  else {
     throw Error('No network settings for ' + hre.network.name)
@@ -126,34 +126,33 @@ async function main (scriptName?: string) {
     bridgeFacet,
     tokenatxorFacet,
     tokenatxorGameFacet,
-    svgFacet,
-    itemsFacet,
-    itemsTransferFacet,
-    collateralFacet,
-    daoFacet,
-    vrfFacet,
-    shopFacet,
-    metaTransactionsFacet,
-    erc1155MarketplaceFacet,
-    erc721MarketplaceFacet,
-    escrowFacet
+    // svgFacet,
+    // itemsFacet,
+    // itemsTransferFacet,
+    // collateralFacet,
+    // daoFacet,
+    // vrfFacet,
+    // shopFacet,
+    // metaTransactionsFacet,
+    // erc1155MarketplaceFacet,
+    // erc721MarketplaceFacet,
+    // escrowFacet
   ] = await deployFacets(
     'contracts/Tokenatxor/facets/BridgeFacet.sol:BridgeFacet',
     'contracts/Tokenatxor/facets/TokenatxorFacet.sol:TokenatxorFacet',
     'TokenatxorGameFacet',
-    'SvgFacet',
-    'contracts/Tokenatxor/facets/ItemsFacet.sol:ItemsFacet',
-    'ItemsTransferFacet',
-    'CollaterFacet',
-    'DAOFacet',
-    'VrfFacet',
-    'ShopFacet',
-    'MetaTransactionsFacet',
-    'ERC1155MarketplaceFacet',
-    'ERC721MarketplaceFacet',
-    'EscrowFacet'
+    // 'SvgFacet',
+    // 'contracts/Tokenatxor/facets/ItemsFacet.sol:ItemsFacet',
+    // 'ItemsTransferFacet',
+    // 'CollaterFacet',
+    // 'DAOFacet',
+    // 'VrfFacet',
+    // 'ShopFacet',
+    // 'MetaTransactionsFacet',
+    // 'ERC1155MarketplaceFacet',
+    // 'ERC721MarketplaceFacet',
+    // 'EscrowFacet'
   )
-  
   // CONTRACT ADDRESS NOW KNOWN
   // tktrTokenContract = await diamond.deploy({
   //   diamondName: 'TKTRDiamond',
@@ -166,7 +165,6 @@ async function main (scriptName?: string) {
   // tktrTokenContract = await ethers.getContractAt('TKTRFacet', tktrTokenContract.address)
   // console.log('TKTR diamond address: ' + tktrTokenContract.address)
 
-   // eslint-disable-next-line no-unused-vars 
   const tokenatxorDiamond = await diamond.deploy({
     diamondName: 'TokenatxorDiamond',
     initDiamond: 'contracts/Tokenatxor/InitDiamond.sol:InitDiamond',
@@ -174,17 +172,17 @@ async function main (scriptName?: string) {
       ['BridgeFacet', bridgeFacet],
       ['TokenatxorFacet', tokenatxorFacet],
       ['TokenatxorGameFacet', tokenatxorGameFacet],
-      ['SvgFacet', svgFacet],
-      ['ItemsFacet', itemsFacet],
-      ['ItemsTransferFacet', itemsTransferFacet],
-      ['CollateralFacet', collateralFacet],
-      ['DAOFacet', daoFacet],
-      ['VrfFacet', vrfFacet],
-      ['ShopFacet', shopFacet],
-      ['MetaTransactionsFacet', metaTransactionsFacet],
-      ['ERC1155MarketplaceFacet', erc1155MarketplaceFacet],
-      ['ERC721MarketplaceFacet', erc721MarketplaceFacet],
-      ['EscrowFacet', escrowFacet]
+      // ['SvgFacet', svgFacet],
+      // ['ItemsFacet', itemsFacet],
+      // ['ItemsTransferFacet', itemsTransferFacet],
+      // ['CollateralFacet', collateralFacet],
+      // ['DAOFacet', daoFacet],
+      // ['VrfFacet', vrfFacet],
+      // ['ShopFacet', shopFacet],
+      // ['MetaTransactionsFacet', metaTransactionsFacet],
+      // ['ERC1155MarketplaceFacet', erc1155MarketplaceFacet],
+      // ['ERC721MarketplaceFacet', erc721MarketplaceFacet],
+      // ['EscrowFacet', escrowFacet]
     ],
     owner: account, 
     args: [[dao, daoTreasury, artists, rarityFarming, tktrTokenContract.address, keyHash, fee, vrfCoordinator, linkAddress, childChainManager,  name, symbol]]
@@ -197,46 +195,46 @@ async function main (scriptName?: string) {
   totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
   // create first production
-  daoFacet = await ethers.getContractAt('DAOFacet', tokenatxorDiamond.address)
-  tx = await daoFacet.createProduction(initialProductionSize, productionPrice, '0x000000')
-  receipt = await tx.wait()
-  console.log('Production created: ' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.getUsed)
+  // daoFacet = await ethers.getContractAt('DAOFacet', tokenatxorDiamond.address)
+  // tx = await daoFacet.createProduction(initialProductionSize, productionPrice, '0x000000')
+  // receipt = await tx.wait()
+  // console.log('Production created: ' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.getUsed)
 
-  receipt = await tx.wait()
-  console.log('Tokenatxor diamond deploy gas used: ' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // receipt = await tx.wait()
+  // console.log('Tokenatxor diamond deploy gas used: ' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
   const diamondLoupeFacet = await ethers.getContractAt('DiamondLoupeFacet', tokenatxorDiamond.address)
-  vrfFacet = await ethers.getContractAt('VrfFacet', tokenatxorDiamond.address)
+  //vrfFacet = await ethers.getContractAt('VrfFacet', tokenatxorDiamond.address)
   tokenatxorFacet = await ethers.getContractAt('contracts/Tokenatxor/facets/TokenatxorFacet.sol:TokenatxorFacet', tokenatxorDiamond.address)
   tokenatxorGameFacet = await ethers.getContractAt('TokenatxorGameFacet', tokenatxorDiamond.address)
-  collateralFacet = await ethers.getContractAt('CollateralFacet', tokenatxorDiamond.address)
-  shopFacet = await ethers.getContractAt('ShopFacet', tokenatxorDiamond.address)
-  erc1155MarketplaceFacet = await ethers.getContractAt('ERC1155MarketplaceFacet', tokenatxorDiamond.address)
-  erc721MarketplaceFacet = await ethers.getContractAt('ERC721MarketplaceFacet', tokenatxorDiamond.address)
-  escrowFacet = await ethers.getContractAt('EscrowFacet', tokenatxorDiamond.address)
+  // collateralFacet = await ethers.getContractAt('CollateralFacet', tokenatxorDiamond.address)
+  // shopFacet = await ethers.getContractAt('ShopFacet', tokenatxorDiamond.address)
+  // erc1155MarketplaceFacet = await ethers.getContractAt('ERC1155MarketplaceFacet', tokenatxorDiamond.address)
+  // erc721MarketplaceFacet = await ethers.getContractAt('ERC721MarketplaceFacet', tokenatxorDiamond.address)
+  // escrowFacet = await ethers.getContractAt('EscrowFacet', tokenatxorDiamond.address)
   bridgeFacet = await ethers.getContractAt('contracts/Tokenatxor/facets/BridgeFacet.sol:BridgeFacet', tokenatxorDiamond.address)
 
   // Add collateral info
   console.log('Adding Collateral Types')
   if (hre.network.name === 'hardhat') {
-    // const { getCollaterals } = require('./collateralTypes.js')
-    const { getCollaterals } = require('./testCollateralTypes.js')
-    tx = await daoFacet.addCollateralTypes(getCollaterals(hre.network.name, tktrTokenContract.address))
+    // const { getCollaterals } = require('./collateralTypes.ts')
+    const { getCollaterals } = require('./testCollateralTypes.ts')
+    //tx = await daoFacet.addCollateralTypes(getCollaterals(hre.network.name, tktrTokenContract.address))
   } else if (hre.network.name === 'mumbai') {
-    // const { getCollaterals } = require('./collateralTypes.js')
-    const { getCollaterals } = require('./testCollateralTypes.js')
-    tx = await daoFacet.addCollateralTypes(getCollaterals(hre.network.name, tktrTokenContract.address))
+    // const { getCollaterals } = require('./collateralTypes.ts')
+    const { getCollaterals } = require('./testCollateralTypes.ts')
+    //tx = await daoFacet.addCollateralTypes(getCollaterals(hre.network.name, tktrTokenContract.address))
   } else {
-    const { getCollaterals } = require('./collateralTypes.js')
-    tx = await daoFacet.addCollateralTypes(getCollaterals(hre.network.name, tktrTokenContract.address))
+    const { getCollaterals } = require('./collateralTypes.ts')
+    //tx = await daoFacet.addCollateralTypes(getCollaterals(hre.network.name, tktrTokenContract.address))
   }
   receipt = await tx.wait()
   console.log('Adding Collateral Types gas used::' + strDisplay(receipt.gasUsed))
   totalGasUsed = totalGasUsed.add(receipt.gasUsed)
   console.log('Adding item managers')
-  tx = await daoFacet.addItemManagers(itemManagers)
+  //tx = await daoFacet.addItemManagers(itemManagers)
   console.log('Adding item managers tx:', tx.hash)
   receipt = await tx.wait()
   if (!receipt.status) {
@@ -244,7 +242,7 @@ async function main (scriptName?: string) {
   }
   console.log('Adding ticket categories')
 
-  tx = await daoFacet.addItemManagers(itemManagers)
+  //tx = await daoFacet.addItemManagers(itemManagers)
   console.log('Adding item managers tx:', tx.hash)
   receipt = await tx.wait()
   if (!receipt.status) {
@@ -252,155 +250,155 @@ async function main (scriptName?: string) {
   }
 
   // adding type categories
-  const ticketCategories = Array()
-  for (let i = 0; i < 6; i++) {
-    ticketCategories.push({
-      erc1155TokenAddress: tktrStakingDiamond,
-      erc1155TypeId: i,
-      category: 3
-    })
-  }
-  tx = await erc1155MarketplaceFacet.setERC1155Categories(ticketCategories, { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding ticket categories gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // const ticketCategories = Array()
+  // for (let i = 0; i < 6; i++) {
+  //   ticketCategories.push({
+  //     erc1155TokenAddress: tktrStakingDiamond,
+  //     erc1155TypeId: i,
+  //     category: 3
+  //   })
+  // }
+  // tx = await erc1155MarketplaceFacet.setERC1155Categories(ticketCategories, { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding ticket categories gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  console.log('Adding Item managers gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // console.log('Adding Item managers gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  console.log('Adding Item Types')
-  itemsFacet = await ethers.getContractAt('contracts/Tokenatxor/facets/ItemsFacet.sol:ItemsFacet', tokenatxorDiamond.address)
-  itemsTransferFacet = await ethers.getContractAt('ItemsTransferFacet', tokenatxorDiamond.address)
-  const { itemTypes } = require('./itemTypes.js')
+  // console.log('Adding Item Types')
+  // itemsFacet = await ethers.getContractAt('contracts/Tokenatxor/facets/ItemsFacet.sol:ItemsFacet', tokenatxorDiamond.address)
+  // itemsTransferFacet = await ethers.getContractAt('ItemsTransferFacet', tokenatxorDiamond.address)
+  // const { itemTypes } = require('./itemTypes.ts')
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice(0, itemTypes.length / 4), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Item Types (1 / 4) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
-  tx = await daoFacet.addItemTypes(itemTypes.slice(itemTypes.length / 4, (itemTypes.length / 4) * 2), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Item Types (2 / 4) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice(0, itemTypes.length / 4), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Item Types (1 / 4) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice(itemTypes.length / 4, (itemTypes.length / 4) * 2), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Item Types (2 / 4) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 2, (itemTypes.length / 4) * 3), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Item Types (3 / 4) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 2, (itemTypes.length / 4) * 3), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Item Types (3 / 4) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 3), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Item Types (4 / 4) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 3), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Item Types (4 / 4) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  // add raffle4ItemTypes
-  const { itemTypes:raffle4ItemTypes } = require('./raffle4ItemTypes.js')
+  // // add raffle4ItemTypes
+  // const { itemTypes:raffle4ItemTypes } = require('./raffle4ItemTypes.ts')
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice(0, raffle4ItemTypes.length / 4), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Raffle4 Item Types (4 / 16) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice(0, raffle4ItemTypes.length / 4), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Raffle4 Item Types (4 / 16) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice(raffle4ItemTypes.length / 4, (itemTypes.length / 16) * 5), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Raffle4 Item Types (5 / 16) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice(raffle4ItemTypes.length / 4, (itemTypes.length / 16) * 5), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Raffle4 Item Types (5 / 16) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 16) * 5, (itemTypes.length / 8) * 3), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Raffle4 Item Types (6 / 16) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 16) * 5, (itemTypes.length / 8) * 3), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Raffle4 Item Types (6 / 16) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 8) * 3, (itemTypes.length / 4) * 2), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Raffle4 Item Types (8 / 16) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 8) * 3, (itemTypes.length / 4) * 2), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Raffle4 Item Types (8 / 16) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 2, (itemTypes.length / 4) * 3), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Raffle4 Item Types (12 / 16) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 2, (itemTypes.length / 4) * 3), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Raffle4 Item Types (12 / 16) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 3), { gasLimit: gasLimit })
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Raffle4 Item Types (16 / 16) gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // tx = await daoFacet.addItemTypes(itemTypes.slice((itemTypes.length / 4) * 3), { gasLimit: gasLimit })
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Raffle4 Item Types (16 / 16) gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  // add Miami shirts
-  console.log('Adding Miami shirts')
-  const { itemTypes:miamiShirtTypes } = require('./addItemTypes/itemTypes/miamiShirtItemType')
-  tx = await daoFacet.addItemTypes(miamiShirtTypes)
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Miami shirts gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // // add Miami shirts
+  // console.log('Adding Miami shirts')
+  // const { itemTypes:miamiShirtTypes } = require('./addItemTypes/itemTypes/miamiShirtItemType')
+  // tx = await daoFacet.addItemTypes(miamiShirtTypes)
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Miami shirts gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  // add Szn1Rnd1bages
-  console.log('Adding Szn1Rnd1badges')
-  const { szn1rnd1ItemTypes } = require('./addItemTypes/itemTypes/szn1rnd1ItemTypes')
-  tx = await daoFacet.addItemTypes(szn1rnd1ItemTypes)
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Szn1Rnd1badges gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // // add Szn1Rnd1bages
+  // console.log('Adding Szn1Rnd1badges')
+  // const { szn1rnd1ItemTypes } = require('./addItemTypes/itemTypes/szn1rnd1ItemTypes')
+  // tx = await daoFacet.addItemTypes(szn1rnd1ItemTypes)
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Szn1Rnd1badges gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  // add Szn1Rnd2bages
-  console.log('Adding Szn1Rnd2badges')
-  const { szn1rnd2ItemTypes } = require('./addItemTypes/itemTypes/szn1rnd2ItemTypes')
-  tx = await daoFacet.addItemTypes(szn1rnd2ItemTypes)
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Szn1Rnd2badges gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // // add Szn1Rnd2bages
+  // console.log('Adding Szn1Rnd2badges')
+  // const { szn1rnd2ItemTypes } = require('./addItemTypes/itemTypes/szn1rnd2ItemTypes')
+  // tx = await daoFacet.addItemTypes(szn1rnd2ItemTypes)
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Szn1Rnd2badges gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
-  // add Unicly Badges
-  console.log('Adding Unicly Badges')
-  const { uniclyBaadgeItemType } = require('./addItemTypes/itemTypes/uniclyBaadgeItemType')
-  tx = await daoFacet.addItemTypes(uniclyBaadgeItemType)
-  receipt = await tx.wait()
-  if (!receipt.status) {
-    throw Error(`Error:: ${tx.hash}`)
-  }
-  console.log('Adding Unicly Badges gas used::' + strDisplay(receipt.gasUsed))
-  totalGasUsed = totalGasUsed.add(receipt.gasUsed)
+  // // add Unicly Badges
+  // console.log('Adding Unicly Badges')
+  // const { uniclyBaadgeItemType } = require('./addItemTypes/itemTypes/uniclyBaadgeItemType')
+  // tx = await daoFacet.addItemTypes(uniclyBaadgeItemType)
+  // receipt = await tx.wait()
+  // if (!receipt.status) {
+  //   throw Error(`Error:: ${tx.hash}`)
+  // }
+  // console.log('Adding Unicly Badges gas used::' + strDisplay(receipt.gasUsed))
+  // totalGasUsed = totalGasUsed.add(receipt.gasUsed)
 
   // // add wearable types sets
   // console.log('Adding Equippable Sets')
@@ -631,22 +629,22 @@ async function main (scriptName?: string) {
   console.log('Total gas used: ' + strDisplay(totalGasUsed))
   return {
     account: account,
-    aavegotchiDiamond: tokenatxorDiamond,
+    tokenatxorDiamond: tokenatxorDiamond,
     diamondLoupeFacet: diamondLoupeFacet,
     bridgeFacet: bridgeFacet,
     tktrTokenContract: tktrTokenContract,
-    itemsFacet: itemsFacet,
-    itemsTransferFacet: itemsTransferFacet,
+    // itemsFacet: itemsFacet,
+    // itemsTransferFacet: itemsTransferFacet,
     tokenatoxrFacet: tokenatxorFacet,
     tokenatxorGameFacet: tokenatxorGameFacet,
-    collateralFacet: collateralFacet,
-    vrfFacet: vrfFacet,
-    daoFacet: daoFacet,
-    svgFacet: svgFacet,
-    erc1155MarketplaceFacet: erc1155MarketplaceFacet,
-    erc721MarketplaceFacet: erc721MarketplaceFacet,
-    shopFacet: shopFacet,
-    escrowFacet: escrowFacet,
+    // collateralFacet: collateralFacet,
+    // vrfFacet: vrfFacet,
+    // daoFacet: daoFacet,
+    // svgFacet: svgFacet,
+    // erc1155MarketplaceFacet: erc1155MarketplaceFacet,
+    // erc721MarketplaceFacet: erc721MarketplaceFacet,
+    // shopFacet: shopFacet,
+    // escrowFacet: escrowFacet,
     linkAddress: linkAddress,
     linkContract: linkContract,
     // secondAccount: secondAccount
